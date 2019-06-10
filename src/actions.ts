@@ -124,9 +124,9 @@ export async function build (path: string, ouputPath?: string) {
     log.error('Package must have a name!')
     process.exit(1)
   }
-
-  let mainJS = fs.readFileSync('main.js').toString()
-  fs.writeFileSync('main.js', mainJS.replace(/^[\s\S]*?\/\/\sSocketLogger\sAuto\sGeneration\sCode[\r\n]*/, ''))
+  const mainJsPath = join(path, 'main.js')
+  let mainJS = fs.readFileSync(mainJsPath).toString()
+  fs.writeFileSync(mainJsPath, mainJS.replace(/^[\s\S]*?\/\/\sSocketLogger\sAuto\sGeneration\sCode[\r\n]*/, ''))
 
   ouputPath = !ouputPath
     ? ouputPath = resolve(path, `.output/${packageName}.box`)

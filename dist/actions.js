@@ -120,8 +120,9 @@ function build(path, ouputPath) {
             log.error('Package must have a name!');
             process.exit(1);
         }
-        let mainJS = fs.readFileSync('main.js').toString();
-        fs.writeFileSync('main.js', mainJS.replace(/^[\s\S]*?\/\/\sSocketLogger\sAuto\sGeneration\sCode[\r\n]*/, ''));
+        const mainJsPath = path_1.join(path, 'main.js')
+        let mainJS = fs.readFileSync(mainJsPath).toString();
+        fs.writeFileSync(mainJsPath, mainJS.replace(/^[\s\S]*?\/\/\sSocketLogger\sAuto\sGeneration\sCode[\r\n]*/, ''));
         ouputPath = !ouputPath
             ? ouputPath = path_1.resolve(path, `.output/${packageName}.box`)
             : ouputPath = path_1.resolve(process.cwd(), ouputPath);
