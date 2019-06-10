@@ -72,7 +72,7 @@ export function watch (file: string, startlogger?: boolean) {
     setupLogger(isDir, file)
   }
 
-  chokidar.watch(file, { ignoreInitial: true })
+  chokidar.watch(file, { ignoreInitial: false, awaitWriteFinish: true })
     .on('all', async () => {
       await sync(isDir, file, host, packageName)
     })
